@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed & Umme - Wedding Invitation</title>
     <style>
         * {
             margin: 0;
@@ -45,7 +46,7 @@
         .invitation-card {
             max-width: 800px;
             width: 100%;
-            background-image: url('backgroundp.png');
+            background-image: url('background.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -330,7 +331,7 @@
     <!-- Falling Flowers -->
     <div class="falling-flowers" id="fallingFlowers"></div>
 
-    <!-- <button class="music-control" id="musicBtn" onclick="toggleMusic()">🎵 Music Playing</button> -->
+    <button class="music-control" id="musicBtn" onclick="toggleMusic()">🎵 Music Playing</button>
     
     <audio id="bgMusic" loop>
         <source src="wedding-music.mp3" type="audio/mpeg">
@@ -343,7 +344,7 @@
 
             <div class="buttons">
                 <button class="btn" onclick="window.open('https://maps.app.goo.gl/ctKUnnbbKhS6xQcz7', '_blank')">See the Venue</button>
-                <button class="btn" onclick="alert('/invitation-card.png')">Download Card</button>
+                <button class="btn" onclick="downloadCard()">Download Card</button>
             </div>
         </div>
     </div>
@@ -389,7 +390,7 @@
             if (!isPlaying) {
                 music.play().then(() => {
                     isPlaying = true;
-                    musicBtn.textContent = '🎵 Music Playing';
+                    if (musicBtn) musicBtn.textContent = '🎵 Music Playing';
                 }).catch(e => console.log('Autoplay prevented'));
                 document.removeEventListener('click', initMusic);
             }
@@ -408,6 +409,17 @@
                     alert('Please click anywhere on the page to enable music');
                 });
             }
+        }
+
+        // Download invitation card PDF
+        function downloadCard() {
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = 'invitation-card.pdf'; // Your PDF file name
+            link.download = 'Wedding-Invitation-Mohammed-Umme.pdf'; // Downloaded filename
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 </body>
