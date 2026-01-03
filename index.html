@@ -3,424 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammed & Umme - Wedding Invitation</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            background: #f5f5f5;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            margin: 0;
-        }
-
-        .music-control {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: rgba(34, 102, 85, 0.9);
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 13px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .music-control:hover {
-            background: rgba(34, 102, 85, 1);
-            transform: scale(1.05);
-        }
-
-        .invitation-card {
-            max-width: 800px;
-            width: 100%;
-            background-image: url('background.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            position: relative;
-            padding: 30px 20px;
-            min-height: 100vh;
-        }
-
-        /* Remove old decorations since we're using background image */
-        .lace-corner,
-        .lace-pattern,
-        .floral-decoration {
-            display: none;
-        }
-
-        .content-wrapper {
-            position: relative;
-            z-index: 2;
-            background: transparent;
-            padding: 80px 30px 40px;
-            border-radius: 10px;
-        }
-
-        .bismillah {
-            font-size: 48px;
-            text-align: center;
-            margin-bottom: 80px;
-            margin-top: 20px;
-            color: #c9a961;
-            font-weight: bold;
-            letter-spacing: 3px;
-            padding-bottom: 30px;
-        }
-
-        .invitation-header {
-            text-align: center;
-            margin-bottom: 40px;
-            margin-top: 60px;
-        }
-
-        .invitation-header p {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #333;
-            line-height: 2;
-            margin: 0;
-        }
-
-        .ceremony-title {
-            font-size: 44px;
-            font-family: 'Brush Script MT', cursive;
-            color: #226655;
-            margin: 25px 0 10px;
-            line-height: 1.2;
-            text-align: center;
-        }
-
-        .ceremony-subtitle {
-            font-size: 22px;
-            font-style: italic;
-            color: #555;
-            margin-bottom: 35px;
-            text-align: center;
-        }
-
-        .uniting-text {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #333;
-            margin: 35px 0 20px;
-            text-align: center;
-        }
-
-        .couple-names {
-            text-align: center;
-            margin: 25px 0 35px;
-        }
-
-        .groom-name, .bride-name {
-            font-size: 40px;
-            font-family: 'Brush Script MT', cursive;
-            color: #226655;
-            margin: 12px 0;
-        }
-
-        .ampersand {
-            font-size: 48px;
-            color: #c9a961;
-            margin: 18px 0;
-            font-family: 'Brush Script MT', cursive;
-        }
-
-        .blessing {
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            color: #333;
-            margin: 35px 0;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        .event-details {
-            text-align: center;
-            margin: 35px 0;
-        }
-
-        .event-details p {
-            font-size: 15px;
-            color: #1a1a1a;
-            margin: 8px 0;
-            letter-spacing: 1px;
-        }
-
-        .date-time {
-            font-size: 18px;
-            font-weight: bold;
-            margin: 12px 0;
-        }
-
-        .venue-name {
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .couple-illustration {
-            width: 100%;
-            max-width: 250px;
-            margin: 40px auto 35px;
-            display: block;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin: 40px 0 25px;
-        }
-
-        .btn {
-            background: #226655;
-            color: white;
-            border: none;
-            padding: 11px 22px;
-            border-radius: 25px;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(34, 102, 85, 0.3);
-        }
-
-        .btn:hover {
-            background: #1a4d40;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(34, 102, 85, 0.4);
-        }
-
-        /* Falling Flowers Animation */
-        .falling-flowers {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 999;
-            overflow: hidden;
-        }
-
-        .flower-petal {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background: radial-gradient(circle, #dc143c, #ff0000);
-            border-radius: 50% 50% 0 50%;
-            opacity: 0.8;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-10px) rotate(0deg);
-                opacity: 0.7;
+    
+    <!-- SEO Meta Tags -->
+    <title>Mohammed & Umme - Wedding Invitation | Muslim Wedding</title>
+    <meta name="description" content="Join us for the wedding celebration of Mohammed and Umme. Saturday, December 28th, 2024 at 7:00 PM. All are welcome to celebrate our special day!">
+    <meta name="keywords" content="wedding invitation, Muslim wedding, Mohammed, Umme, marriage ceremony, wedding celebration">
+    <meta name="author" content="Mohammed & Umme">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Mohammed & Umme - Wedding Invitation">
+    <meta property="og:description" content="Join us for our wedding celebration! Saturday, December 28th, 2024">
+    <meta property="og:image" content="https://i.pinimg.com/originals/f6/27/91/f62791c3d0e3e2c3a0b3e0e3e3d8e3c3.png">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mohammed & Umme Wedding">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mohammed & Umme - Wedding Invitation">
+    <meta name="twitter:description" content="Join us for our wedding celebration! Saturday, December 28th, 2024">
+    <meta name="twitter:image" content="https://i.pinimg.com/originals/f6/27/91/f62791c3d0e3e2c3a0b3e0e3e3d8e3c3.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourdomain.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="js/script.js" as="script">
+    <link rel="preload" href="assets/background.png" as="image">
+    <link rel="preload" href="assets/wedding-music.mp3" as="audio">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "Wedding of Mohammed and Umme",
+        "startDate": "2024-12-28T19:00:00",
+        "endDate": "2024-12-28T23:00:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+            "@type": "Place",
+            "name": "Wedding Venue",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Your City",
+                "addressRegion": "Your State",
+                "addressCountry": "Your Country"
             }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
+        },
+        "image": [
+            "https://i.pinimg.com/originals/f6/27/91/f62791c3d0e3e2c3a0b3e0e3e3d8e3c3.png"
+        ],
+        "description": "Join us for the wedding celebration of Mohammed and Umme. All are welcome to celebrate our special day!",
+        "organizer": {
+            "@type": "Person",
+            "name": "Mohammed and Umme"
         }
-
-        @media (max-width: 768px) {
-            .invitation-card {
-                padding: 20px 10px;
-            }
-
-            .content-wrapper {
-                padding: 30px 10px 20px;
-                min-height: 70vh;
-            }
-
-            .invitation-header p {
-                font-size: 11px;
-                letter-spacing: 1px;
-            }
-
-            .ceremony-title {
-                font-size: 36px;
-            }
-
-            .ceremony-subtitle {
-                font-size: 18px;
-            }
-
-            .groom-name, .bride-name {
-                font-size: 32px;
-            }
-
-            .ampersand {
-                font-size: 40px;
-            }
-
-            .uniting-text {
-                font-size: 12px;
-                letter-spacing: 2px;
-            }
-
-            .blessing {
-                font-size: 14px;
-                letter-spacing: 2px;
-            }
-
-            .event-details p {
-                font-size: 13px;
-            }
-
-            .date-time {
-                font-size: 16px;
-            }
-
-            .venue-name {
-                font-size: 14px;
-            }
-
-            .couple-illustration {
-                max-width: 200px;
-                margin: 30px auto 25px;
-            }
-
-            .buttons {
-                gap: 10px;
-                margin: 30px 0 20px;
-            }
-
-            .btn {
-                padding: 10px 18px;
-                font-size: 9px;
-            }
-
-            .music-control {
-                top: 5px;
-                right: 5px;
-                padding: 8px 14px;
-                font-size: 11px;
-            }
-
-            .floral-decoration,
-            .lace-corner,
-            .lace-pattern {
-                width: 80px;
-                height: 80px;
-            }
-        }
-    </style>
+    }
+    </script>
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
 </head>
 <body>
-    <!-- Falling Flowers -->
-    <div class="falling-flowers" id="fallingFlowers"></div>
-
-    <button class="music-control" id="musicBtn" onclick="toggleMusic()">🎵 Music Playing</button>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
     
-    <audio id="bgMusic" loop>
-        <source src="wedding-music.mp3" type="audio/mpeg">
-        <source src="wedding-music.ogg" type="audio/ogg">
+    <!-- Screen reader announcements -->
+    <div id="live-region" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+    
+    <!-- Falling Flowers Animation -->
+    <div class="falling-flowers" id="fallingFlowers" aria-hidden="true"></div>
+
+    <!-- Music Control -->
+    <button class="music-control" 
+            id="musicBtn" 
+            onclick="window.weddingInvitation && window.weddingInvitation.toggleMusic()"
+            aria-describedby="music-description"
+            title="Toggle background music">
+        🎵 Music Playing
+    </button>
+    <div id="music-description" class="sr-only">
+        Toggle background music for the wedding invitation
+    </div>
+    
+    <!-- Background Music -->
+    <audio id="bgMusic" loop preload="metadata">
+        <source src="assets/wedding-music.mp3" type="audio/mpeg">
+        <source src="assets/wedding-music.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
     </audio>
 
-    <div class="invitation-card">
+    <!-- Main Invitation Card -->
+    <main class="invitation-card" id="main-content">
         <div class="content-wrapper">
-            <img src="https://i.pinimg.com/originals/f6/27/91/f62791c3d0e3e2c3a0b3e0e3e3d8e3c3.png" alt="Muslim Wedding Couple" class="couple-illustration" onerror="this.style.display='none'"/>
+            <!-- Wedding Couple Illustration -->
+            <img src="https://i.pinimg.com/originals/f6/27/91/f62791c3d0e3e2c3a0b3e0e3e3d8e3c3.png" 
+                 alt="Muslim wedding couple illustration showing Mohammed and Umme" 
+                 class="couple-illustration"
+                 loading="lazy"
+                 onerror="this.style.display='none'"
+                 width="250" 
+                 height="250">
 
-            <div class="buttons">
-                <button class="btn" onclick="window.open('https://maps.app.goo.gl/ctKUnnbbKhS6xQcz7', '_blank')">See the Venue</button>
-                <button class="btn" onclick="downloadCard()">Download Card</button>
-            </div>
+            <!-- Navigation Buttons -->
+            <nav class="buttons" aria-label="Wedding invitation actions">
+                <button class="btn" 
+                        onclick="window.open('https://maps.app.goo.gl/ctKUnnbbKhS6xQcz7', '_blank')"
+                        aria-describedby="venue-description"
+                        title="View wedding venue location">
+                    See the Venue
+                </button>
+                <button class="btn" 
+                        onclick="window.weddingInvitation && window.weddingInvitation.downloadCard()"
+                        aria-describedby="download-description"
+                        title="Download wedding invitation card">
+                    Download Card
+                </button>
+            </nav>
+            <div id="venue-description" class="sr-only">Opens venue location in Google Maps</div>
+            <div id="download-description" class="sr-only">Downloads the wedding invitation as a PDF file</div>
         </div>
-    </div>
+    </main>
 
+    <!-- Error fallback for users with JavaScript disabled -->
+    <noscript>
+        <div class="error-message">
+            <p>This wedding invitation requires JavaScript to display properly. Please enable JavaScript in your browser settings.</p>
+        </div>
+    </noscript>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    
+    <!-- Performance monitoring (optional) -->
     <script>
-        // Falling flowers animation
-        const flowersContainer = document.getElementById('fallingFlowers');
-        
-        function createFlower() {
-            const flower = document.createElement('div');
-            flower.className = 'flower-petal';
-            flower.style.left = Math.random() * 100 + '%';
-            flower.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            flower.style.animationDelay = Math.random() * 2 + 's';
-            flower.style.width = (Math.random() * 8 + 10) + 'px';
-            flower.style.height = (Math.random() * 8 + 10) + 'px';
-            
-            // Vary red shades
-            const redShades = ['#dc143c', '#ff0000', '#cc0000', '#b22222', '#8b0000'];
-            flower.style.background = `radial-gradient(circle, ${redShades[Math.floor(Math.random() * redShades.length)]}, #ff4444)`;
-            
-            flowersContainer.appendChild(flower);
-            
-            setTimeout(() => {
-                flower.remove();
-            }, 8000);
-        }
-        
-        // Create flowers continuously
-        setInterval(createFlower, 300);
-        
-        // Initial flowers
-        for (let i = 0; i < 15; i++) {
-            setTimeout(createFlower, i * 200);
-        }
-
-        // Music control
-        const music = document.getElementById('bgMusic');
-        const musicBtn = document.getElementById('musicBtn');
-        let isPlaying = false;
-
-        document.addEventListener('click', function initMusic() {
-            if (!isPlaying) {
-                music.play().then(() => {
-                    isPlaying = true;
-                    if (musicBtn) musicBtn.textContent = '🎵 Music Playing';
-                }).catch(e => console.log('Autoplay prevented'));
-                document.removeEventListener('click', initMusic);
+        // Monitor page load performance
+        window.addEventListener('load', function() {
+            if ('performance' in window) {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                console.log('Page load time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
             }
-        }, { once: true });
-
-        function toggleMusic() {
-            if (isPlaying) {
-                music.pause();
-                musicBtn.textContent = '🎵 Play Music';
-                isPlaying = false;
-            } else {
-                music.play().then(() => {
-                    musicBtn.textContent = '🎵 Music Playing';
-                    isPlaying = true;
-                }).catch(e => {
-                    alert('Please click anywhere on the page to enable music');
-                });
-            }
-        }
-
-        // Download invitation card PDF
-        function downloadCard() {
-            // Create a temporary link element
-            const link = document.createElement('a');
-            link.href = 'invitation-card.pdf'; // Your PDF file name
-            link.download = 'Wedding-Invitation-Mohammed-Umme.pdf'; // Downloaded filename
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
+        });
     </script>
 </body>
 </html>

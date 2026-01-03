@@ -1,0 +1,555 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS Variables for easier maintenance */
+:root {
+    --primary-color: #226655;
+    --secondary-color: #c9a961;
+    --text-color: #333;
+    --light-text: #555;
+    --bg-color: #f5f5f5;
+    --white: #ffffff;
+    --shadow: 0 10px 40px rgba(0,0,0,0.15);
+    --shadow-light: 0 4px 15px rgba(0,0,0,0.2);
+    --border-radius: 10px;
+    --border-radius-large: 25px;
+    --transition: all 0.3s ease;
+    --font-primary: 'Georgia', serif;
+    --font-script: 'Brush Script MT', cursive;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-primary);
+    background: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* Skip to content link for accessibility */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 9999;
+    transition: var(--transition);
+}
+
+.skip-to-content:focus {
+    top: 6px;
+}
+
+/* Music Control Button */
+.music-control {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: rgba(34, 102, 85, 0.9);
+    color: var(--white);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 13px;
+    box-shadow: var(--shadow-light);
+    z-index: 1000;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.music-control:hover,
+.music-control:focus {
+    background: rgba(34, 102, 85, 1);
+    transform: scale(1.05);
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+.music-control:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Main Invitation Card */
+.invitation-card {
+    max-width: 800px;
+    width: 100%;
+    background-image: url('../assets/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: var(--shadow);
+    position: relative;
+    padding: 30px 20px;
+    min-height: 100vh;
+    border-radius: var(--border-radius);
+}
+
+/* Loading state for background image */
+.invitation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #f5f5f5, #e8e8e8);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.invitation-card.loading::before {
+    opacity: 1;
+}
+
+.invitation-card.loaded::before {
+    opacity: 0;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    padding: 80px 30px 40px;
+    border-radius: var(--border-radius);
+}
+
+/* Typography */
+.bismillah {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 80px;
+    margin-top: 20px;
+    color: var(--secondary-color);
+    font-weight: bold;
+    letter-spacing: 3px;
+    padding-bottom: 30px;
+}
+
+.invitation-header {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 60px;
+}
+
+.invitation-header p {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-color);
+    line-height: 2;
+    margin: 0;
+}
+
+.ceremony-title {
+    font-size: 44px;
+    font-family: var(--font-script);
+    color: var(--primary-color);
+    margin: 25px 0 10px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.ceremony-subtitle {
+    font-size: 22px;
+    font-style: italic;
+    color: var(--light-text);
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.uniting-text {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--text-color);
+    margin: 35px 0 20px;
+    text-align: center;
+}
+
+.couple-names {
+    text-align: center;
+    margin: 25px 0 35px;
+}
+
+.groom-name, .bride-name {
+    font-size: 40px;
+    font-family: var(--font-script);
+    color: var(--primary-color);
+    margin: 12px 0;
+}
+
+.ampersand {
+    font-size: 48px;
+    color: var(--secondary-color);
+    margin: 18px 0;
+    font-family: var(--font-script);
+}
+
+.blessing {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--text-color);
+    margin: 35px 0;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Event Details */
+.event-details {
+    text-align: center;
+    margin: 35px 0;
+}
+
+.event-details p {
+    font-size: 15px;
+    color: #1a1a1a;
+    margin: 8px 0;
+    letter-spacing: 1px;
+}
+
+.date-time {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.venue-name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Images */
+.couple-illustration {
+    width: 100%;
+    max-width: 250px;
+    margin: 40px auto 35px;
+    display: block;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: var(--transition);
+}
+
+.couple-illustration:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 40px 0 25px;
+}
+
+.btn {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 11px 22px;
+    border-radius: var(--border-radius-large);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 10px rgba(34, 102, 85, 0.3);
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover,
+.btn:focus {
+    background: #1a4d40;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(34, 102, 85, 0.4);
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Loading spinner for buttons */
+.btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid transparent;
+    border-top: 2px solid var(--white);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Falling Flowers Animation */
+.falling-flowers {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+}
+
+.flower-petal {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle, #dc143c, #ff0000);
+    border-radius: 50% 50% 0 50%;
+    opacity: 0.8;
+    animation: fall linear infinite;
+    will-change: transform;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .falling-flowers {
+        display: none;
+    }
+    
+    .flower-petal {
+        animation: none;
+    }
+    
+    .music-control,
+    .btn,
+    .couple-illustration {
+        transition: none;
+    }
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Error states */
+.error-message {
+    background: #ff4444;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+.loading-message {
+    background: #f0f0f0;
+    color: #666;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Focus management */
+*:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .invitation-card {
+        padding: 20px 10px;
+    }
+
+    .content-wrapper {
+        padding: 30px 10px 20px;
+        min-height: 70vh;
+    }
+
+    .invitation-header p {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+
+    .ceremony-title {
+        font-size: 36px;
+    }
+
+    .ceremony-subtitle {
+        font-size: 18px;
+    }
+
+    .groom-name, .bride-name {
+        font-size: 32px;
+    }
+
+    .ampersand {
+        font-size: 40px;
+    }
+
+    .uniting-text {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    .blessing {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    .event-details p {
+        font-size: 13px;
+    }
+
+    .date-time {
+        font-size: 16px;
+    }
+
+    .venue-name {
+        font-size: 14px;
+    }
+
+    .couple-illustration {
+        max-width: 200px;
+        margin: 30px auto 25px;
+    }
+
+    .buttons {
+        gap: 10px;
+        margin: 30px 0 20px;
+    }
+
+    .btn {
+        padding: 10px 18px;
+        font-size: 9px;
+    }
+
+    .music-control {
+        top: 5px;
+        right: 5px;
+        padding: 8px 14px;
+        font-size: 11px;
+    }
+
+    .bismillah {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+    
+    .invitation-card {
+        padding: 15px 5px;
+    }
+    
+    .content-wrapper {
+        padding: 20px 5px 15px;
+    }
+    
+    .ceremony-title {
+        font-size: 28px;
+    }
+    
+    .groom-name, .bride-name {
+        font-size: 28px;
+    }
+    
+    .ampersand {
+        font-size: 32px;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #000000;
+        --secondary-color: #000000;
+        --text-color: #000000;
+    }
+    
+    .btn {
+        border: 2px solid #000000;
+    }
+    
+    .music-control {
+        border: 2px solid #000000;
+    }
+}
+
+/* Print styles */
+@media print {
+    .music-control,
+    .falling-flowers,
+    .btn {
+        display: none !important;
+    }
+    
+    .invitation-card {
+        box-shadow: none;
+        background: white;
+        color: black;
+    }
+    
+    body {
+        background: white;
+    }
+}
